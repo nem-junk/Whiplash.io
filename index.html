@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHIPLASH — Stealth Action Framework</title>
+    <meta name="description" content="Whiplash is a custom-built Unreal Engine 5 stealth action game featuring advanced C++ systems, a custom Gameplay Ability System, and AAA-grade weapon mechanics.">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ========== NAV ========== -->
+    <nav id="nav">
+        <div class="nav-logo">W.</div>
+        <div class="nav-links">
+            <a href="#systems">Systems</a>
+            <a href="#weapons">Weapons</a>
+            <a href="#traversal">Traversal</a>
+            <a href="https://github.com/nem-junk/Whiplash" target="_blank" class="nav-github">GitHub ↗</a>
+        </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section id="hero">
+        <div class="hero-grid-overlay"></div>
+        <!-- Tactical crosshairs -->
+        <div class="crosshair crosshair-tl"></div>
+        <div class="crosshair crosshair-tr"></div>
+        <div class="crosshair crosshair-bl"></div>
+        <div class="crosshair crosshair-br"></div>
+        <!-- Red scan line -->
+        <div class="scan-line"></div>
+        <!-- Center content -->
+        <div class="hero-content">
+            <div class="hero-tag">UNREAL ENGINE 5 // C++ // STEALTH ACTION</div>
+            <h1 class="hero-title">WHIPLASH</h1>
+            <div class="hero-subtitle">Custom-built stealth action framework featuring modular C++ systems, AAA weapon mechanics, and procedural traversal.</div>
+            <div class="hero-scroll-hint">
+                <span>SCROLL DOWN</span>
+                <div class="scroll-arrow"></div>
+            </div>
+        </div>
+        <!-- Bottom status bar -->
+        <div class="hero-status-bar">
+            <span class="status-item"><span class="status-dot"></span> SYSTEMS ONLINE</span>
+            <span class="status-item">BUILD // 2026.05</span>
+            <span class="status-item">UE 5.6</span>
+        </div>
+    </section>
+
+    <!-- ========== FEATURES INTRO ========== -->
+    <section id="features-intro" class="section">
+        <div class="section-container">
+            <div class="section-label">// OVERVIEW</div>
+            <h2 class="section-title">ENGINEERED<br>FROM SCRATCH</h2>
+            <p class="section-description">Every system in Whiplash is hand-coded in C++. No marketplace assets. No default implementations. Purpose-built for performance, modularity, and AAA-grade gameplay feel.</p>
+        </div>
+    </section>
+
+    <!-- ========== FEATURE 01: GAS ========== -->
+    <section id="systems" class="section feature-section">
+        <div class="feature-number">01</div>
+        <div class="section-container feature-grid">
+            <div class="feature-info">
+                <div class="feature-tag">CORE SYSTEM</div>
+                <h2 class="feature-title">CUSTOM GAMEPLAY<br>ABILITY SYSTEM</h2>
+                <p class="feature-desc">A lightweight, high-performance alternative to Unreal's default GAS. Tag-driven architecture using <code>FGameplayTag</code> structures for granting, executing, and revoking abilities with zero coupling.</p>
+                <ul class="feature-list">
+                    <li><span class="list-marker"></span>Tag-driven ability grants & revocation</li>
+                    <li><span class="list-marker"></span>Attribute modifiers with delegate broadcasting</li>
+                    <li><span class="list-marker"></span>Abstract UWAbility base class for rapid prototyping</li>
+                    <li><span class="list-marker"></span>Isolated unit testing via AWAttributeSetTester</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <div class="video-placeholder" id="video-gas">
+                    <div class="video-placeholder-inner">
+                        <div class="video-icon">▶</div>
+                        <span>GAMEPLAY VIDEO</span>
+                        <span class="video-sub">Ability System Demo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FEATURE 02: WEAPONS ========== -->
+    <section id="weapons" class="section feature-section">
+        <div class="feature-number">02</div>
+        <div class="section-container feature-grid feature-grid-reverse">
+            <div class="feature-info">
+                <div class="feature-tag">BALLISTICS ENGINE</div>
+                <h2 class="feature-title">ADVANCED WEAPON<br>FRAMEWORK</h2>
+                <p class="feature-desc">AAA-grade weapon system inspired by Epic's Lyra project. Procedural spread, first-shot accuracy, and material-based damage attenuation — all driven by data assets for designer-friendly iteration.</p>
+                <ul class="feature-list">
+                    <li><span class="list-marker"></span>Real-time procedural spread & recoil</li>
+                    <li><span class="list-marker"></span>State-aware multipliers (ADS, crouch, airborne)</li>
+                    <li><span class="list-marker"></span>Distance & material-based damage falloff</li>
+                    <li><span class="list-marker"></span>Data-driven via UDataAsset configurations</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <div class="video-placeholder" id="video-weapons">
+                    <div class="video-placeholder-inner">
+                        <div class="video-icon">▶</div>
+                        <span>GAMEPLAY VIDEO</span>
+                        <span class="video-sub">Weapon Systems Demo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FEATURE 03: TRAVERSAL ========== -->
+    <section id="traversal" class="section feature-section">
+        <div class="feature-number">03</div>
+        <div class="section-container feature-grid">
+            <div class="feature-info">
+                <div class="feature-tag">MOVEMENT ENGINE</div>
+                <h2 class="feature-title">PARKOUR &<br>TRAVERSAL</h2>
+                <p class="feature-desc">Custom traversal component handling dynamic vault, hurdle, and mantle actions. Spline-based ledge detection with interface-driven obstacle math for seamless procedural animation playback.</p>
+                <ul class="feature-list">
+                    <li><span class="list-marker"></span>Spline-based ledge detection & mapping</li>
+                    <li><span class="list-marker"></span>ITraversalObstacleInterface for hit math</li>
+                    <li><span class="list-marker"></span>Dynamic vault / hurdle / mantle classification</li>
+                    <li><span class="list-marker"></span>Gait-aware animation selection</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <div class="video-placeholder" id="video-traversal">
+                    <div class="video-placeholder-inner">
+                        <div class="video-icon">▶</div>
+                        <span>GAMEPLAY VIDEO</span>
+                        <span class="video-sub">Traversal Demo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FEATURE 04: BP TO C++ ========== -->
+    <section id="translation" class="section feature-section">
+        <div class="feature-number">04</div>
+        <div class="section-container feature-grid feature-grid-reverse">
+            <div class="feature-info">
+                <div class="feature-tag">OPTIMIZATION</div>
+                <h2 class="feature-title">BLUEPRINT<br>TO C++</h2>
+                <p class="feature-desc">Complete manual translation of Epic's Game Animation Sample from dense Blueprint graphs into clean, optimized native C++. Demonstrating deep understanding of both visual scripting and native engine code.</p>
+                <ul class="feature-list">
+                    <li><span class="list-marker"></span>Full Game Animation Sample conversion</li>
+                    <li><span class="list-marker"></span>Motion Matching integration in native C++</li>
+                    <li><span class="list-marker"></span>Console Variable debugging subsystem</li>
+                    <li><span class="list-marker"></span>Custom C++ macros for CVar broadcasting</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <div class="video-placeholder" id="video-bptocpp">
+                    <div class="video-placeholder-inner">
+                        <div class="video-icon">▶</div>
+                        <span>GAMEPLAY VIDEO</span>
+                        <span class="video-sub">Animation System Demo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TECH STATS ========== -->
+    <section id="stats" class="section">
+        <div class="section-container">
+            <div class="section-label">// TECHNICAL SPECIFICATIONS</div>
+            <h2 class="section-title">BUILT DIFFERENT</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">C++ CODEBASE</div>
+                    <div class="stat-desc">No Blueprint logic. Every gameplay system written in native C++.</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">MODULAR COMPONENTS</div>
+                    <div class="stat-desc">WAbilityComponent, WWeaponStateComponent, WTraversalComponent, and more.</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">MARKETPLACE ASSETS</div>
+                    <div class="stat-desc">Every system engineered from scratch. No third-party dependencies.</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">UE 5.6</div>
+                    <div class="stat-label">ENGINE VERSION</div>
+                    <div class="stat-desc">Built on the latest Unreal Engine with cutting-edge features.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ENGINE SYSTEMS ========== -->
+    <section id="engine" class="section">
+        <div class="section-container">
+            <div class="section-label">// UNDER THE HOOD</div>
+            <h2 class="section-title">ENGINE-LEVEL<br>SYSTEMS</h2>
+            <div class="engine-grid">
+                <div class="engine-card">
+                    <div class="engine-card-number">01</div>
+                    <h3>CVar Subsystem</h3>
+                    <p>Custom GameInstance Subsystem with macro-driven console variable interception. Hooks into IConsoleManager and broadcasts via Dynamic Multicast Delegates.</p>
+                </div>
+                <div class="engine-card">
+                    <div class="engine-card-number">02</div>
+                    <h3>Tag-Based Physics</h3>
+                    <p>Extended UPhysicalMaterial with FGameplayTagContainer. Data-driven material interactions replacing hardcoded surface enums.</p>
+                </div>
+                <div class="engine-card">
+                    <div class="engine-card-number">03</div>
+                    <h3>Memory Management</h3>
+                    <p>Heavy use of TWeakObjectPtr, TObjectPtr, and forward declarations. Zero circular dependencies, zero memory leaks.</p>
+                </div>
+                <div class="engine-card">
+                    <div class="engine-card-number">04</div>
+                    <h3>Unit Testing</h3>
+                    <p>Dedicated AWAttributeSetTester actor for isolated system validation. Test-driven development approach for gameplay attributes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CTA ========== -->
+    <section id="cta" class="section">
+        <div class="section-container cta-container">
+            <div class="section-label">// SOURCE CODE</div>
+            <h2 class="cta-title">EXPLORE<br>THE CODE</h2>
+            <p class="cta-desc">The full Whiplash source code is available on GitHub. Dive into the architecture, study the systems, and see how it all fits together.</p>
+            <a href="https://github.com/nem-junk/Whiplash" target="_blank" class="cta-button">
+                VIEW ON GITHUB <span class="cta-arrow">→</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer id="footer">
+        <div class="footer-inner">
+            <div class="footer-logo">W.</div>
+            <div class="footer-text">WHIPLASH // UE5 STEALTH ACTION FRAMEWORK // 2026</div>
+            <div class="footer-links">
+                <a href="https://github.com/nem-junk/Whiplash" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./main.js"></script>
+</body>
+</html>
