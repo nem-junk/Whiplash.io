@@ -3,253 +3,586 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WHIPLASH — Stealth Action Framework</title>
-    <meta name="description" content="Whiplash is a custom-built Unreal Engine 5 stealth action game featuring advanced C++ systems, a custom Gameplay Ability System, and AAA-grade weapon mechanics.">
-    <link rel="stylesheet" href="./style.css">
+    <title>WHIPLASH | UE5 Gameplay Systems</title>
+    <meta name="description" content="Whiplash is an Unreal Engine 5.6 stealth action prototype focused on motion matching, custom GAS-style abilities, traversal, weapons, and gameplay systems.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css?v=roadmap-1">
 </head>
-<body>
-    <!-- ========== NAV ========== -->
-    <nav id="nav">
-        <div class="nav-logo">W.</div>
-        <div class="nav-links">
-            <a href="#systems">Systems</a>
-            <a href="#weapons">Weapons</a>
-            <a href="#traversal">Traversal</a>
-            <a href="https://github.com/nem-junk/Whiplash" target="_blank" class="nav-github">GitHub ↗</a>
+<body class="is-loading">
+    <div id="page-loader" class="page-loader" aria-live="polite" aria-label="Loading Whiplash">
+        <div class="loader-inner">
+            <div class="loader-brand">
+                <span><span class="logo-slashes">//</span> W</span>
+                <strong>WHIPLASH</strong>
+            </div>
+            <div class="loader-bar" aria-hidden="true">
+                <span></span>
+            </div>
         </div>
+    </div>
+
+    <aside id="mobile-desktop-notice" class="mobile-desktop-notice" aria-label="Desktop viewing recommendation" hidden>
+        <div class="mobile-desktop-card">
+            <span>// Desktop Recommended</span>
+            <p>
+                This page is created in wide 3D characters layout. To view it properly,
+                open it on your PC or activate the Desktop Site mode on your mobile device.
+                I will adjust the Layout to Mobiles shortly!
+            </p>
+            <button type="button" data-mobile-notice-close>Got it</button>
+        </div>
+    </aside>
+
+    <nav id="nav" aria-label="Primary navigation">
+        <a class="nav-logo" href="#hero" aria-label="Whiplash home"><span class="logo-slashes">//</span> W</a>
     </nav>
 
-    <!-- ========== HERO ========== -->
-    <section id="hero">
-        <div class="hero-grid-overlay"></div>
-        <!-- Tactical crosshairs -->
-        <div class="crosshair crosshair-tl"></div>
-        <div class="crosshair crosshair-tr"></div>
-        <div class="crosshair crosshair-bl"></div>
-        <div class="crosshair crosshair-br"></div>
-        <!-- Red scan line -->
-        <div class="scan-line"></div>
-        <!-- Center content -->
-        <div class="hero-content">
-            <div class="hero-tag">UNREAL ENGINE 5 // C++ // STEALTH ACTION</div>
-            <h1 class="hero-title">WHIPLASH</h1>
-            <div class="hero-subtitle">Custom-built stealth action framework featuring modular C++ systems, AAA weapon mechanics, and procedural traversal.</div>
-            <div class="hero-scroll-hint">
-                <span>SCROLL DOWN</span>
-                <div class="scroll-arrow"></div>
-            </div>
-        </div>
-        <!-- Bottom status bar -->
-        <div class="hero-status-bar">
-            <span class="status-item"><span class="status-dot"></span> SYSTEMS ONLINE</span>
-            <span class="status-item">BUILD // 2026.05</span>
-            <span class="status-item">UE 5.6</span>
-        </div>
-    </section>
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="hero-bg-block hero-bg-orange"></div>
+            <div class="hero-bg-block hero-bg-teal"></div>
+            <div class="hero-bg-block hero-bg-warm"></div>
+            <canvas id="hero-particles" aria-hidden="true"></canvas>
 
-    <!-- ========== FEATURES INTRO ========== -->
-    <section id="features-intro" class="section">
-        <div class="section-container">
-            <div class="section-label">// OVERVIEW</div>
-            <h2 class="section-title">ENGINEERED<br>FROM SCRATCH</h2>
-            <p class="section-description">Every system in Whiplash is hand-coded in C++. No marketplace assets. No default implementations. Purpose-built for performance, modularity, and AAA-grade gameplay feel.</p>
-        </div>
-    </section>
-
-    <!-- ========== FEATURE 01: GAS ========== -->
-    <section id="systems" class="section feature-section">
-        <div class="feature-number">01</div>
-        <div class="section-container feature-grid">
-            <div class="feature-info">
-                <div class="feature-tag">CORE SYSTEM</div>
-                <h2 class="feature-title">CUSTOM GAMEPLAY<br>ABILITY SYSTEM</h2>
-                <p class="feature-desc">A lightweight, high-performance alternative to Unreal's default GAS. Tag-driven architecture using <code>FGameplayTag</code> structures for granting, executing, and revoking abilities with zero coupling.</p>
-                <ul class="feature-list">
-                    <li><span class="list-marker"></span>Tag-driven ability grants & revocation</li>
-                    <li><span class="list-marker"></span>Attribute modifiers with delegate broadcasting</li>
-                    <li><span class="list-marker"></span>Abstract UWAbility base class for rapid prototyping</li>
-                    <li><span class="list-marker"></span>Isolated unit testing via AWAttributeSetTester</li>
-                </ul>
+            <div class="hero-copy">
+                <div class="eyebrow">UE 5.6 // C++ // Gameplay Systems</div>
+                <h1>W<span class="title-letter-h">H</span>IPLASH<span class="wip-tag">(WIP)</span></h1>
+                <p class="hero-lede">
+                    Third person character system developed in C++ using UE5 - Custom Ability System,
+                    Weapons System inspired by Lyra, Motion Matching-based Locomotion Stack controlling
+                    around 3,000 animations. Traversal System has been replicated from Game Animation
+                    Sample Blueprint provided by Epic to C++.
+                </p>
             </div>
-            <div class="feature-visual">
-                <div class="video-placeholder" id="video-gas">
-                    <div class="video-placeholder-inner">
-                        <div class="video-icon">▶</div>
-                        <span>GAMEPLAY VIDEO</span>
-                        <span class="video-sub">Ability System Demo</span>
+
+            <div class="hero-model-wrap" aria-label="Interactive UE5 mannequin preview">
+                <canvas id="hero-model"></canvas>
+            </div>
+
+        </section>
+
+        <section id="showcase" class="section section-white">
+            <div class="section-container framework-showcase">
+                <div class="framework-copy">
+                    <span class="section-label">// Gameplay Architecture</span>
+                    <h2>Custom lightweight GAS-style character framework.</h2>
+                    <p>
+                        Whiplash is built around a modular C++ character framework where input requests
+                        abilities by gameplay tag, abilities grant or block state tags, and gameplay systems
+                        react through shared components instead of one-off input scripts.
+                    </p>
+
+                    <div class="framework-flow" aria-label="Ability framework flow">
+                        <span>Enhanced Input</span>
+                        <span>Ability Tag</span>
+                        <span>Ability Lifecycle</span>
+                        <span>Gameplay Tags</span>
+                        <span>Animation / Weapon / Stamina Response</span>
+                    </div>
+
+                    <div class="framework-points">
+                        <article>
+                            <h3>Ability + Tag Layer</h3>
+                            <p>
+                                <code>WAbilityComponent</code> manages ability objects and enables or disables actions
+                                through tags. <code>TMap&lt;FGameplayTag, int32&gt;</code> allows multiple
+                                systems to assign the same state. <code>OnTagChanged</code> sends signals for
+                                changes in states, allowing characters to respond to such things as crouching,
+                                ADS'ing, and shooting.
+                            </p>
+                        </article>
+                        <article>
+                            <h3>Custom Attribute Modifiers</h3>
+                            <p>
+                                Attribute modifiers support <code>Add</code>, <code>Multiply</code>, and
+                                <code>Override</code> with durations and tick intervals. Timer callbacks use
+                                <code>BindWeakLambda</code>, removed modifiers rebuild the stack to avoid drift,
+                                stamina regen stops at max, and depletion delegates fire once.
+                            </p>
+                        </article>
+                        <article>
+                            <h3>Interface-Based Access</h3>
+                            <p>
+                                Gameplay systems query shared components through <code>IWComponentInterface</code>
+                                instead of hard actor casts, keeping weapons, animation, stamina, and UI less tightly coupled.
+                            </p>
+                        </article>
+                        <article>
+                            <h3>Lightweight Ability Objects</h3>
+                            <p>
+                                Abilities are <code>UObject</code>-based with <code>BlueprintNativeEvent</code>
+                                lifecycle hooks, preserving tag-gated activation and designer override points
+                                without taking on full GAS cost.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="framework-video gif-panel framework-gif-panel" aria-label="Gameplay framework GIF slots">
+                    <article
+                        class="gif-card gif-card-media-only"
+                        tabindex="0"
+                        role="button"
+                        aria-label="Open Tag-driven activation GIF"
+                        data-gif-modal
+                        data-gif-src="./assets/TagDrivenActivation.gif">
+                        <div class="gif-media">
+                            <img src="./assets/TagDrivenActivation.gif" alt="Tag-driven activation flow preview">
+                        </div>
+                        <div class="gif-card-content">
+                            <span class="gif-kicker">Ability Framework</span>
+                            <h3>Tag-driven activation</h3>
+                            <p>Show input requesting an ability tag, with granted and blocked states updating.</p>
+                        </div>
+                    </article>
+                    <article
+                        class="gif-card gif-card-media-only"
+                        tabindex="0"
+                        role="button"
+                        aria-label="Open modifier stack response GIF"
+                        data-gif-modal
+                        data-gif-src="./assets/StaminaModifierStack.gif">
+                        <div class="gif-media">
+                            <img src="./assets/StaminaModifierStack.gif" alt="Modifier stack response preview">
+                        </div>
+                        <div class="gif-card-content">
+                            <span class="gif-kicker">Attributes</span>
+                            <h3>Modifier stack response</h3>
+                            <p>Show stamina drain, regen delay, and modifier recalculation in motion.</p>
+                        </div>
+                    </article>
+                    <article
+                        class="gif-card gif-card-media-only"
+                        tabindex="0"
+                        role="button"
+                        aria-label="Open tag reaction flow GIF"
+                        data-gif-modal
+                        data-gif-src="./assets/CrouchTagReaction.gif">
+                        <div class="gif-media">
+                            <img src="./assets/CrouchTagReaction.gif" alt="Tag reaction flow preview">
+                        </div>
+                        <div class="gif-card-content">
+                            <span class="gif-kicker">State Events</span>
+                            <h3>Tag reaction flow</h3>
+                            <p>Show crouch, ADS, or firing tags triggering character and UI responses.</p>
+                        </div>
+                    </article>
+                <!--
+                <button class="video-card framework-video-card" type="button" data-youtube-id="">
+                    <span class="play-ring">▶</span>
+                    <span class="video-copy">
+                        <strong>Whiplash Gameplay Showcase</strong>
+                        <span>Click to play once a YouTube video ID is added.</span>
+                    </span>
+                    <span class="video-meta">YouTube embed</span>
+                </button>
+                -->
+                </div>
+            </div>
+        </section>
+
+        <section id="weapons" class="section section-teal">
+            <div class="section-container weapon-showcase">
+                <div class="weapon-copy">
+                    <div class="section-heading weapon-heading">
+                        <span class="section-label">// Weapon System</span>
+                        <h2>Data-driven weapon state with simulated spread.</h2>
+                        <p>
+                            <code>UWWeaponStateComponent</code> separates weapon tuning from runtime behavior:
+                            weapon data stays designer-editable, while the component handles fire timing, ammo,
+                            recoil, spread recovery, first-shot accuracy, and damage attenuation hooks.
+                        </p>
+                    </div>
+
+                    <div class="framework-flow" aria-label="Weapon system flow">
+                        <span>Spread Simulation</span>
+                        <span>First-Shot Accuracy</span>
+                        <span>Recoil</span>
+                        <span>Runtime State Component</span>
+                        <span>Weapon Data Asset</span>
+                        <span>Hitscan Pipeline</span>
+                        <span>Physical Material Zones</span>
+                        <span>Ability-Based Firing</span>
+                        <span>Auto / Semi Fire Modes</span>
+                    </div>
+
+                    <div class="framework-points">
+                        <article>
+                            <h3>Ticked Spread Simulation</h3>
+                            <p>
+                                Spread is not a fixed random cone. ADS, movement, crouch, and falling multipliers
+                                interpolate every tick, then multiply into the final shot spread.
+                            </p>
+                        </article>
+                        <article>
+                            <h3>First-Shot Accuracy</h3>
+                            <p>
+                                First-shot accuracy returns only after spread decay and contextual multipliers converge,
+                                with a cached decay threshold derived from weapon fire rate.
+                            </p>
+                        </article>
+                        <article>
+                            <h3>Data-Driven Damage</h3>
+                            <p>
+                                Distance falloff uses a designer-editable <code>FRuntimeFloatCurve</code>. Hit surface
+                                and damage-zone multipliers use <code>TMap&lt;FGameplayTag, float&gt;</code>, so headshots,
+                                limb shots, and surface types can be configured per weapon data asset.
+                            </p>
+                        </article>
+                        <article>
+                            <h3>Ability Fire Pipeline</h3>
+                            <p>
+                                The fire ability validates the weapon interface, checks <code>CanFire</code>, traces
+                                from camera to target and muzzle to hit, applies spread/recoil, and plays fire montage data.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="weapon-video gif-panel weapon-gif-panel" aria-label="Weapon system GIF slots">
+                    <article
+                        class="gif-card gif-card-media-only"
+                        data-gif-modal
+                        data-gif-src="./assets/ContextualSpreadChange.gif"
+                        tabindex="0"
+                        role="button"
+                        aria-label="Open contextual spread changes GIF"
+                    >
+                        <div class="gif-media">
+                            <img src="./assets/ContextualSpreadChange.gif" alt="Contextual spread changes gameplay GIF">
+                        </div>
+                        <div class="gif-card-content">
+                            <span class="gif-kicker">Spread</span>
+                            <h3>Contextual spread changes</h3>
+                            <p>Show ADS, movement, crouch, and falling multipliers affecting shot spread.</p>
+                        </div>
+                    </article>
+                    <article
+                        class="gif-card gif-card-media-only"
+                        data-gif-modal
+                        data-gif-src="./assets/RecoilFirstShotAccuracyFlow.gif"
+                        tabindex="0"
+                        role="button"
+                        aria-label="Open recoil and first-shot accuracy GIF"
+                    >
+                        <div class="gif-media">
+                            <img src="./assets/RecoilFirstShotAccuracyFlow.gif" alt="Recoil and first-shot accuracy gameplay GIF">
+                        </div>
+                        <div class="gif-card-content">
+                            <span class="gif-kicker">Fire Pipeline</span>
+                            <h3>Recoil and first-shot accuracy</h3>
+                            <p>Show weapon firing, recoil feedback, and spread recovering back to accuracy.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="animation" class="section section-orange">
+            <div class="section-container animation-showcase">
+                <div class="animation-copy">
+                    <div class="section-heading animation-heading">
+                        <span class="section-label">// Animation Architecture</span>
+                        <h2>Game Animation Sample-Style Motion Matching, Extended in C++.</h2>
+                        <p>
+                            The base Animation Blueprint is based on Epic's Game Animation Sample Motion Matching setup.
+                            My implementation work focuses on moving the gameplay-side character, movement, camera,
+                            and traversal decision logic into C++, then layering weapon-ready poses on top with linked
+                            animation layers and Blueprint Thread Safe helpers where appropriate.
+                        </p>
+                    </div>
+
+                    <div class="framework-flow" aria-label="Animation architecture flow">
+                        <span>Game Animation Sample Base</span>
+                        <span>C++ Character Port</span>
+                        <span>Motion Matching</span>
+                        <span>Pose Search</span>
+                        <span>Thread Safe AnimBP Helpers</span>
+                        <span>Linked Animation Layers</span>
+                        <span>Pistol Overlay Poses</span>
+                        <span>Traversal Montage Bridge</span>
+                    </div>
+
+                    <div class="framework-points">
+                        <article>
+                            <h3>C++ Character Port</h3>
+                            <p>
+                                <code>AWCharacter</code> owns camera updates, gait selection, rotation mode,
+                                directional max speed, landing state, and traversal requests that were Blueprint-side
+                                in the sample-style setup.
+                            </p>
+                        </article>
+                        <article>
+                            <h3>Motion Matching Bridge</h3>
+                            <p>
+                                Traversal builds Chooser parameters, evaluates candidate montages, then calls
+                                <code>UPoseSearchLibrary::MotionMatch</code> to select montage, start time, and play rate.
+                            </p>
+                        </article>
+                        <article>
+                            <h3>Linked Weapon Overlays</h3>
+                            <p>
+                                The Motion Matching locomotion pose stays as the base layer, while linked overlay
+                                layers add pistol-ready, aim, firing, two-handed, and crouched weapon poses.
+                            </p>
+                        </article>
+                        <article>
+                            <h3>Thread-Safe AnimBP Helpers</h3>
+                            <p>
+                                Animation helper logic is organized with Blueprint Thread Safe functions where
+                                appropriate, while C++ exposes gameplay state such as equipped weapon, aiming, and traversal.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="animation-video gif-panel animation-gif-panel" aria-label="Animation system GIF slots">
+                    <article
+                        class="gif-card gif-card-media-only"
+                        data-gif-modal
+                        data-gif-src="./assets/MotionMatchingBasePose.gif"
+                        tabindex="0"
+                        role="button"
+                        aria-label="Open motion matching base pose GIF"
+                    >
+                        <div class="gif-media">
+                            <img src="./assets/MotionMatchingBasePose.gif" alt="Motion matching base pose gameplay GIF">
+                        </div>
+                        <div class="gif-card-content">
+                            <span class="gif-kicker">Locomotion</span>
+                            <h3>Motion Matching base pose</h3>
+                            <p>Show starts, stops, pivots, sprinting, and crouched locomotion selection.</p>
+                        </div>
+                    </article>
+                    <article
+                        class="gif-card gif-card-media-only"
+                        data-gif-modal
+                        data-gif-src="./assets/WeaponAnimationOverlay.gif"
+                        tabindex="0"
+                        role="button"
+                        aria-label="Open weapon-ready poses GIF"
+                    >
+                        <div class="gif-media">
+                            <img src="./assets/WeaponAnimationOverlay.gif" alt="Weapon-ready animation overlay gameplay GIF">
+                        </div>
+                        <div class="gif-card-content">
+                            <span class="gif-kicker">Overlay Layers</span>
+                            <h3>Weapon-ready poses</h3>
+                            <p>Show pistol-ready, aim, firing, and crouched overlays layered above locomotion.</p>
+                        </div>
+                    </article>
+                    <article
+                        class="gif-card gif-card-media-only"
+                        data-gif-modal
+                        data-gif-src="./assets/ChooserMotionWarping.gif"
+                        tabindex="0"
+                        role="button"
+                        aria-label="Open chooser to motion warping GIF"
+                    >
+                        <div class="gif-media">
+                            <img src="./assets/ChooserMotionWarping.gif" alt="Chooser to Motion Warping traversal GIF">
+                        </div>
+                        <div class="gif-card-content">
+                            <span class="gif-kicker">Traversal</span>
+                            <h3>Chooser to Motion Warping</h3>
+                            <p>Show obstacle classification, montage selection, and aligned traversal playback.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="systems" class="section section-white">
+            <div class="section-container">
+                <div class="section-heading">
+                    <span class="section-label">// Additional Systems</span>
+                    <h2>Extra systems working under the hood!!</h2>
+                    <p>
+                        Input, camera, stamina, traversal data, flashlight behavior, and debug tools built
+                        around the main character framework.
+                    </p>
+                </div>
+
+                <div class="systems-table">
+                    <article class="systems-row">
+                        <div class="systems-row-title">
+                            <span>01</span>
+                            <h3>Enhanced Input Routing</h3>
+                        </div>
+                        <ul>
+                            <li><code>AWPlayerController</code> binds movement, world-space movement, look, walk, sprint, jump, crouch, strafe, perspective, aim, shoot, and flashlight actions.</li>
+                            <li>Controller input stays focused on player intent, while character/components own the gameplay response.</li>
+                        </ul>
+                    </article>
+
+                    <article class="systems-row">
+                        <div class="systems-row-title">
+                            <span>02</span>
+                            <h3>Camera Mode Parameters</h3>
+                        </div>
+                        <ul>
+                            <li><code>FCameraParameters</code> drives first-person, third-person far, third-person close, and third-person aim camera styles.</li>
+                            <li>Spring arm length, socket offset, FOV, camera lag, and transition speed interpolate per camera mode.</li>
+                        </ul>
+                    </article>
+
+                    <article class="systems-row">
+                        <div class="systems-row-title">
+                            <span>03</span>
+                            <h3>Movement + Gait Rules</h3>
+                        </div>
+                        <ul>
+                            <li>Walk, run, sprint, and crouch speeds use forward/strafe/backward speed vectors instead of one flat max speed.</li>
+                            <li>A strafe speed curve maps movement direction into the character movement component's max speed.</li>
+                        </ul>
+                    </article>
+
+                    <article class="systems-row">
+                        <div class="systems-row-title">
+                            <span>04</span>
+                            <h3>Stamina + HUD Hooks</h3>
+                        </div>
+                        <ul>
+                            <li>Health and stamina changes broadcast through attribute delegates rather than being polled by UI.</li>
+                            <li>The main HUD updates the stamina widget when stamina changes; out-of-stamina stops sprint drain behavior.</li>
+                        </ul>
+                    </article>
+
+                    <article class="systems-row">
+                        <div class="systems-row-title">
+                            <span>05</span>
+                            <h3>Flashlight Interface</h3>
+                        </div>
+                        <ul>
+                            <li>Flashlight input calls an interface on the currently equipped weapon actor instead of hard-coding a pistol class.</li>
+                            <li>The weapon mesh actor owns the spotlight toggle and uses an IES light profile from the Fab asset <a href="https://www.fab.com/listings/e0131df5-6fcd-42f4-86db-b406a3b4127d" target="_blank" rel="noreferrer"><em>IES Light Profile Pack</em></a> for the flashlight beam.</li>
+                            <li>A custom time-driven flashlight material creates the blinking effect independently of input and weapon logic.</li>
+                        </ul>
+                    </article>
+
+                    <article class="systems-row">
+                        <div class="systems-row-title">
+                            <span>06</span>
+                            <h3>Traversal Obstacle + Interaction Data</h3>
+                        </div>
+                        <ul>
+                            <li><code>UWTraversalComponent</code> stores spline ledges, opposite ledge pairs, and minimum ledge width for traversal-ready obstacles.</li>
+                            <li>It resolves front and back ledge locations/normals into <code>FTraversalCheckResult</code>, giving the character clean obstacle data before montage selection.</li>
+                            <li><code>IWInteractionTInterface</code> passes the front-ledge interaction transform into the AnimBP without hard-coding the animation Blueprint class.</li>
+                        </ul>
+                    </article>
+
+                    <article class="systems-row">
+                        <div class="systems-row-title">
+                            <span>07</span>
+                            <h3>Debug + Test Utilities</h3>
+                        </div>
+                        <ul>
+                            <li><code>UWGameInstanceSubsystem</code> listens to Motion Matching and traversal console variables, then rebroadcasts changes through Blueprint-assignable events.</li>
+                            <li><code>AWAttributeSetTester</code> exposes Call In Editor actions for damage, healing, stamina drain, regen, and modifier validation.</li>
+                        </ul>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="stack" class="section section-burnt">
+            <div class="section-container">
+                <h2>UE Systems Used.</h2>
+                <div class="stack-list">
+                    <span>Unreal Engine 5.6</span>
+                    <span>C++</span>
+                    <span>Blueprints</span>
+                    <span>Enhanced Input</span>
+                    <span>Gameplay Tags</span>
+                    <span>Custom GAS-style abilities</span>
+                    <span>Pose Search</span>
+                    <span>Motion Matching</span>
+                    <span>Chooser</span>
+                    <span>Motion Warping</span>
+                    <span>Animation Warping</span>
+                    <span>UMG</span>
+                    <span>Data Assets</span>
+                    <span>Line / sweep traces</span>
+                    <span>Timers and delegates</span>
+                </div>
+
+                <div class="coming-stack">
+                    <span class="section-label">// More Things to Come</span>
+                    <div class="coming-grid">
+                        <article>
+                            <h3>AI Enemy + Rifle</h3>
+                            <p>Researching neural-network assisted enemy behavior layered with State Tree and Behavior Tree logic.</p>
+                        </article>
+                        <article>
+                            <h3>Game Design Document</h3>
+                            <p>A full GDD for Whiplash will be uploaded soon.</p>
+                        </article>
+                        <article>
+                            <h3>Save / Load System</h3>
+                            <p>Planned persistence for player progress, weapon state, and project-specific gameplay data.</p>
+                        </article>
+                        <article>
+                            <h3>AI State Debug Display</h3>
+                            <p>In-game debug UI for reading enemy awareness, current state, and behavior decisions while testing.</p>
+                        </article>
+                        <article>
+                            <h3>Shadow Dash Ability</h3>
+                            <p>A player dash that relocates the character to a corner or shadow point outside enemy sightlines.</p>
+                        </article>
+                        <article>
+                            <h3>More Systems</h3>
+                            <p>Cover system support plus additional stealth, combat (Katana Ability), traversal (more traversal animations to add), and AI debug tools will be added as the project grows.</p>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="asset-stack">
+                    <span class="section-label">// External Assets Used</span>
+                    <div class="stack-list">
+                        <a href="https://www.fab.com/listings/e0131df5-6fcd-42f4-86db-b406a3b4127d" target="_blank" rel="noreferrer">IES Light Profile Pack</a>
+                        <a href="https://www.fab.com/listings/a6ab4843-7c8a-47d1-912c-fc1c3553df23" target="_blank" rel="noreferrer">SuperGrid Starter Pack</a>
+                        <a href="https://www.fab.com/listings/509f8c0a-3eb8-46cb-bda9-3cf1a48d6aa0" target="_blank" rel="noreferrer">Pistol + Rifle Locomotion Animations</a>
+                        <a href="https://www.fab.com/listings/3a8d9b13-2d8b-4cec-8d0a-0badd999f732" target="_blank" rel="noreferrer">Pistol 9mm Custom</a>
+                        <a href="https://www.fab.com/listings/880e319a-a59e-4ed2-b268-b32dac7fa016?lang=en" target="_blank" rel="noreferrer">Epic's Game Animation Sample</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- ========== FEATURE 02: WEAPONS ========== -->
-    <section id="weapons" class="section feature-section">
-        <div class="feature-number">02</div>
-        <div class="section-container feature-grid feature-grid-reverse">
-            <div class="feature-info">
-                <div class="feature-tag">BALLISTICS ENGINE</div>
-                <h2 class="feature-title">ADVANCED WEAPON<br>FRAMEWORK</h2>
-                <p class="feature-desc">AAA-grade weapon system inspired by Epic's Lyra project. Procedural spread, first-shot accuracy, and material-based damage attenuation — all driven by data assets for designer-friendly iteration.</p>
-                <ul class="feature-list">
-                    <li><span class="list-marker"></span>Real-time procedural spread & recoil</li>
-                    <li><span class="list-marker"></span>State-aware multipliers (ADS, crouch, airborne)</li>
-                    <li><span class="list-marker"></span>Distance & material-based damage falloff</li>
-                    <li><span class="list-marker"></span>Data-driven via UDataAsset configurations</li>
-                </ul>
-            </div>
-            <div class="feature-visual">
-                <div class="video-placeholder" id="video-weapons">
-                    <div class="video-placeholder-inner">
-                        <div class="video-icon">▶</div>
-                        <span>GAMEPLAY VIDEO</span>
-                        <span class="video-sub">Weapon Systems Demo</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== FEATURE 03: TRAVERSAL ========== -->
-    <section id="traversal" class="section feature-section">
-        <div class="feature-number">03</div>
-        <div class="section-container feature-grid">
-            <div class="feature-info">
-                <div class="feature-tag">MOVEMENT ENGINE</div>
-                <h2 class="feature-title">PARKOUR &<br>TRAVERSAL</h2>
-                <p class="feature-desc">Custom traversal component handling dynamic vault, hurdle, and mantle actions. Spline-based ledge detection with interface-driven obstacle math for seamless procedural animation playback.</p>
-                <ul class="feature-list">
-                    <li><span class="list-marker"></span>Spline-based ledge detection & mapping</li>
-                    <li><span class="list-marker"></span>ITraversalObstacleInterface for hit math</li>
-                    <li><span class="list-marker"></span>Dynamic vault / hurdle / mantle classification</li>
-                    <li><span class="list-marker"></span>Gait-aware animation selection</li>
-                </ul>
-            </div>
-            <div class="feature-visual">
-                <div class="video-placeholder" id="video-traversal">
-                    <div class="video-placeholder-inner">
-                        <div class="video-icon">▶</div>
-                        <span>GAMEPLAY VIDEO</span>
-                        <span class="video-sub">Traversal Demo</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== FEATURE 04: BP TO C++ ========== -->
-    <section id="translation" class="section feature-section">
-        <div class="feature-number">04</div>
-        <div class="section-container feature-grid feature-grid-reverse">
-            <div class="feature-info">
-                <div class="feature-tag">OPTIMIZATION</div>
-                <h2 class="feature-title">BLUEPRINT<br>TO C++</h2>
-                <p class="feature-desc">Complete manual translation of Epic's Game Animation Sample from dense Blueprint graphs into clean, optimized native C++. Demonstrating deep understanding of both visual scripting and native engine code.</p>
-                <ul class="feature-list">
-                    <li><span class="list-marker"></span>Full Game Animation Sample conversion</li>
-                    <li><span class="list-marker"></span>Motion Matching integration in native C++</li>
-                    <li><span class="list-marker"></span>Console Variable debugging subsystem</li>
-                    <li><span class="list-marker"></span>Custom C++ macros for CVar broadcasting</li>
-                </ul>
-            </div>
-            <div class="feature-visual">
-                <div class="video-placeholder" id="video-bptocpp">
-                    <div class="video-placeholder-inner">
-                        <div class="video-icon">▶</div>
-                        <span>GAMEPLAY VIDEO</span>
-                        <span class="video-sub">Animation System Demo</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== TECH STATS ========== -->
-    <section id="stats" class="section">
-        <div class="section-container">
-            <div class="section-label">// TECHNICAL SPECIFICATIONS</div>
-            <h2 class="section-title">BUILT DIFFERENT</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">C++ CODEBASE</div>
-                    <div class="stat-desc">No Blueprint logic. Every gameplay system written in native C++.</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">5+</div>
-                    <div class="stat-label">MODULAR COMPONENTS</div>
-                    <div class="stat-desc">WAbilityComponent, WWeaponStateComponent, WTraversalComponent, and more.</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">0</div>
-                    <div class="stat-label">MARKETPLACE ASSETS</div>
-                    <div class="stat-desc">Every system engineered from scratch. No third-party dependencies.</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">UE 5.6</div>
-                    <div class="stat-label">ENGINE VERSION</div>
-                    <div class="stat-desc">Built on the latest Unreal Engine with cutting-edge features.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== ENGINE SYSTEMS ========== -->
-    <section id="engine" class="section">
-        <div class="section-container">
-            <div class="section-label">// UNDER THE HOOD</div>
-            <h2 class="section-title">ENGINE-LEVEL<br>SYSTEMS</h2>
-            <div class="engine-grid">
-                <div class="engine-card">
-                    <div class="engine-card-number">01</div>
-                    <h3>CVar Subsystem</h3>
-                    <p>Custom GameInstance Subsystem with macro-driven console variable interception. Hooks into IConsoleManager and broadcasts via Dynamic Multicast Delegates.</p>
-                </div>
-                <div class="engine-card">
-                    <div class="engine-card-number">02</div>
-                    <h3>Tag-Based Physics</h3>
-                    <p>Extended UPhysicalMaterial with FGameplayTagContainer. Data-driven material interactions replacing hardcoded surface enums.</p>
-                </div>
-                <div class="engine-card">
-                    <div class="engine-card-number">03</div>
-                    <h3>Memory Management</h3>
-                    <p>Heavy use of TWeakObjectPtr, TObjectPtr, and forward declarations. Zero circular dependencies, zero memory leaks.</p>
-                </div>
-                <div class="engine-card">
-                    <div class="engine-card-number">04</div>
-                    <h3>Unit Testing</h3>
-                    <p>Dedicated AWAttributeSetTester actor for isolated system validation. Test-driven development approach for gameplay attributes.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== CTA ========== -->
-    <section id="cta" class="section">
-        <div class="section-container cta-container">
-            <div class="section-label">// SOURCE CODE</div>
-            <h2 class="cta-title">EXPLORE<br>THE CODE</h2>
-            <p class="cta-desc">The full Whiplash source code is available on GitHub. Dive into the architecture, study the systems, and see how it all fits together.</p>
-            <a href="https://github.com/nem-junk/Whiplash" target="_blank" class="cta-button">
-                VIEW ON GITHUB <span class="cta-arrow">→</span>
-            </a>
-        </div>
-    </section>
-
-    <!-- ========== FOOTER ========== -->
     <footer id="footer">
         <div class="footer-inner">
-            <div class="footer-logo">W.</div>
-            <div class="footer-text">WHIPLASH // UE5 STEALTH ACTION FRAMEWORK // 2026</div>
+            <div class="footer-logo"><span class="logo-slashes">//</span> W</div>
             <div class="footer-links">
-                <a href="https://github.com/nem-junk/Whiplash" target="_blank">GitHub</a>
+                <a href="https://github.com/nem-junk/Whiplash" target="_blank" rel="noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/nikunjsharma0102/" target="_blank" rel="noreferrer">LinkedIn</a>
             </div>
         </div>
     </footer>
 
-    <script src="./main.js"></script>
+    <div class="gif-modal" id="gif-modal" aria-hidden="true">
+        <div class="gif-modal-backdrop" data-close-gif></div>
+        <div class="gif-modal-dialog" role="dialog" aria-modal="true" aria-label="GIF preview">
+            <div class="gif-modal-controls">
+                <button class="gif-modal-close" type="button" data-close-gif>Close</button>
+            </div>
+            <div class="gif-modal-frame">
+                <img class="gif-modal-image" id="gif-modal-image" alt="Expanded GIF preview">
+            </div>
+        </div>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "./vendor/three/three.module.js"
+            }
+        }
+    </script>
+    <script type="module" src="./main.js?v=mobile-notice-2"></script>
 </body>
 </html>
