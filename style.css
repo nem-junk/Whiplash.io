@@ -855,6 +855,13 @@ a {
     text-transform: uppercase;
 }
 
+@media (max-width: 760px) {
+    /* Mobile version: hide the Three.js character canvas completely. */
+    .hero-model-wrap {
+        display: none;
+    }
+}
+
 .section {
     padding: clamp(4.5rem, 8vw, 8rem) 0;
     scroll-margin-top: 5rem;

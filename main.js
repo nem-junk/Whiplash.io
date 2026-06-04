@@ -352,6 +352,14 @@ function setupModel(pageLoader) {
         return;
     }
 
+    // Mobile version: keep the Three.js character code disabled so phones do not load or show GLB characters.
+    const disableCharactersOnMobile = window.matchMedia('(max-width: 760px)').matches;
+    if (disableCharactersOnMobile) {
+        canvas.closest('.hero-model-wrap')?.setAttribute('hidden', '');
+        pageLoader?.setCharactersReady();
+        return;
+    }
+
     const renderer = new THREE.WebGLRenderer({
         canvas,
         alpha: true,
