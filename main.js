@@ -494,7 +494,8 @@ function setupModel(pageLoader) {
     const runRoot = createCharacterRoot({ x: 4, z: -0.58, yaw: -0.18, yawStrength: 0.28, pitchStrength: 0.35, rotationEase: 0.07 });
     const slideRoot = createCharacterRoot({ x: 8, z: -0.84, yaw: THREE.MathUtils.degToRad(-40), yawStrength: 0.28, pitchStrength: 0.35, rotationEase: 0.07 });
     const characterRoot = createCharacterRoot({ x: 6,y: 0, z: 0.36, yaw: -0.22, yawStrength: 0.95, pitchStrength: 0.85, rotationEase: 0.22 });
-    const traversalRoot = createCharacterRoot({ x: -6.25, y: 1.411, z: 0.05, yaw: THREE.MathUtils.degToRad(8), yawStrength: 0, pitchStrength: 3.2, rotationEase: 0.09 });
+    // Traversal character disabled.
+    // const traversalRoot = createCharacterRoot({ x: -6.25, y: 1.411, z: 0.05, yaw: THREE.MathUtils.degToRad(8), yawStrength: 0, pitchStrength: 3.2, rotationEase: 0.09 });
 
     const sharedCharacterShadowPlane = new THREE.Mesh(
         new THREE.PlaneGeometry(18, 18),
@@ -547,21 +548,21 @@ function setupModel(pageLoader) {
             run: { x: 3, y: -0.6, z: -0.58, scale: 1.8, visible: true },
             slide: { x: 9, y: -1.1, z: -0.84, scale: 1.2, visible: true },
             character: { x: 6, y: 0, z: 0.36, scale: 1, visible: true },
-            traversal: { x: -4.5, y: 1.1, z: 0.05, scale: 1, visible: true }
+            // traversal: { x: -4.5, y: 1.1, z: 0.05, scale: 1, visible: true }
         },
         tablet: {
             cameraHeight: 13.5,
             run: { x: 2.4, y: -0.15, z: -0.58, scale: 0.78, visible: true },
             slide: { x: 5.0, y: -0.2, z: -0.84, scale: 0.78, visible: true },
             character: { x: 3.5, y: -0.35, z: 0.36, scale: 0.82, visible: true },
-            traversal: { x: -2.8, y: 1.9, z: 0.05, scale: 0.9, visible: true }
+            // traversal: { x: -2.8, y: 1.9, z: 0.05, scale: 0.9, visible: true }
         },
         mobile: {
             cameraHeight: 13.5,
             run: { visible: false },
             slide: { visible: false },
             character: { visible: false },
-            traversal: { x: -1.6, y: 2.0, z: 0.05, scale: 0.76, visible: true }
+            // traversal: { x: -1.6, y: 2.0, z: 0.05, scale: 0.76, visible: true }
         }
     };
 
@@ -569,7 +570,7 @@ function setupModel(pageLoader) {
         run: runRoot,
         slide: slideRoot,
         character: characterRoot,
-        traversal: traversalRoot
+        // traversal: traversalRoot
     };
 
     const getSceneLayout = () => {
@@ -597,9 +598,10 @@ function setupModel(pageLoader) {
             }
             root.scale.setScalar(item.scale ?? 1);
 
-            if (root === traversalRoot) {
-                root.userData.baseY = root.position.y;
-            }
+            // Traversal character disabled.
+            // if (root === traversalRoot) {
+            //     root.userData.baseY = root.position.y;
+            // }
         });
 
         shadowPlaneRecords.forEach(({ plane, root, offsetX, offsetY, offsetZ }) => {
@@ -682,15 +684,16 @@ function setupModel(pageLoader) {
     });
 
     const characterLoadPromises = [
-    loadCharacter({
-        path: './assets/CharacterTraversalNoPistol.glb',
-        root: traversalRoot,
-        height: 2.82 * 0.62,
-        verticalOffset: 0.36,
-        castShadow: true,
-        playAnimation: false,
-        removeNodes: ['SuperGrid_Box']
-    }),
+    // Traversal character disabled.
+    // loadCharacter({
+    //     path: './assets/CharacterTraversalNoPistol.glb',
+    //     root: traversalRoot,
+    //     height: 2.82 * 0.62,
+    //     verticalOffset: 0.36,
+    //     castShadow: true,
+    //     playAnimation: false,
+    //     removeNodes: ['SuperGrid_Box']
+    // }),
     loadCharacter({
         path: './assets/CharacterRunWithPistol.glb',
         root: runRoot,
@@ -744,13 +747,14 @@ function setupModel(pageLoader) {
         }
 
         const yawDelta = targetYaw - -0.22;
-        const traversalBaseY = traversalRoot.userData.baseY ?? traversalRoot.position.y;
-        const traversalTargetY = traversalBaseY - traversalScrollDrop;
-        traversalRoot.position.y += (traversalTargetY - traversalRoot.position.y) * 0.08;
+        // Traversal character disabled.
+        // const traversalBaseY = traversalRoot.userData.baseY ?? traversalRoot.position.y;
+        // const traversalTargetY = traversalBaseY - traversalScrollDrop;
+        // traversalRoot.position.y += (traversalTargetY - traversalRoot.position.y) * 0.08;
 
         characterRoots.forEach(({ root, baseYaw, yawStrength, pitchStrength, rotationEase }) => {
             const yawTarget = baseYaw + yawDelta * yawStrength;
-            const pitchTarget = (root === traversalRoot ? scrollPitch : targetPitch) * pitchStrength;
+            const pitchTarget = targetPitch * pitchStrength;
             root.rotation.y += (yawTarget - root.rotation.y) * rotationEase;
             root.rotation.x += (pitchTarget - root.rotation.x) * (rotationEase * 0.82);
         });
